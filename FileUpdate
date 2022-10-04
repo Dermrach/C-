@@ -1,0 +1,41 @@
+#include <iostream>
+#include <fstream>
+
+//Desenvolvido por DermRach (Acesse mundopauta.wordpress.com) - 04/10/2022
+//Objetivo do programa: Preencher um Array para ser gravado em um arquivo do tipo TXT
+//Tópico relacionados: Struct, File, For e Array
+
+//Double - 8 bytes | Inteiro, Float, String = 4 Bytes | Bool, char = 1 byte
+
+using namespace std;
+
+struct NOMES {
+    string x[5];
+    string nome;
+};
+
+
+int main()
+{
+    NOMES CAL;
+    int i, LEN;
+    string n,Mytext;
+
+    //Tamanho do Array para ser usado como criteiro de iteracao
+    LEN = sizeof(CAL.x) / sizeof(CAL.x[0]);
+    ofstream FILE("LogName.txt");
+
+    for (i=0; i<LEN;i++)
+    {
+        //Atribui valores para serem colocados em um arquivo chamado LogName
+        cout << "Digite um nome\n";
+        getline(cin,CAL.nome);
+        CAL.x[i] = CAL.nome;
+
+        //Comando que atribui um registro  e outros em seguida (Append)
+        FILE << CAL.x[i] + "\n" + CAL.x[i-1];
+    }
+
+    
+    return 0;
+}
